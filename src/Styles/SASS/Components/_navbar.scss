@@ -1,0 +1,62 @@
+@mixin nav-item-container {
+  color: #000000;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Roboto, sans-serif;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: $highlight-primary;
+    color: white;
+  }
+  &--active {
+    background-color: $highlight-primary;
+    color: white;
+  }
+}
+
+.navbar {
+  display: flex;
+  gap: 4px;
+
+  &__item {
+    @include nav-item-container;
+
+    & span {
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__hamburgerIcon {
+    @include nav-item-container;
+    display: none;
+    cursor: pointer;
+    font-size: 28px;
+  }
+}
+
+@include tablet-and-mobile {
+  .navbar {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    background-color: white;
+    padding: 16px;
+    border-radius: 16px;
+    display: none;
+
+    &--active {
+      display: block;
+    }
+
+    &__hamburgerIcon {
+      display: block;
+    }
+  }
+}

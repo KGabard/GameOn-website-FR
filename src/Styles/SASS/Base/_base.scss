@@ -1,0 +1,32 @@
+:root {
+  --font-default: 'DM Sans', Arial, Helvetica, sans-serif;
+  --font-slab: var(--font-default);
+  --modal-duration: 0.8s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-default);
+  font-size: 18px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 $gutter;
+}
+
+p {
+  margin-bottom: 0;
+  padding: 0.5vw;
+}
+
+@include tablet-and-mobile {
+  body {
+    padding: 0;
+  }
+}

@@ -1,0 +1,27 @@
+.header {
+  margin: 24px 0 0;
+  padding: 8px 0;
+  display: flex;
+  gap: 48px;
+  row-gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+
+  &__logo {
+    width: 270px;
+  }
+}
+
+@include tablet-and-mobile {
+  .header {
+    padding-right: 8px;
+    padding-left: 8px;
+    &__logo {
+      width: 0;
+      flex: 1 1 0px;
+      max-width: 270px;
+    }
+  }
+}
