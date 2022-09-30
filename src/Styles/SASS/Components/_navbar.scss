@@ -39,7 +39,7 @@
   }
 }
 
-@include tablet-and-mobile {
+@include mobile {
   .navbar {
     flex-direction: column;
     position: absolute;

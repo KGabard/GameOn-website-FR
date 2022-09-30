@@ -8,33 +8,13 @@
 @import './Layouts/header';
 @import './Layouts/main_section';
 @import './Layouts/hero-section';
+@import './Layouts/footer';
 
 
 /* Landing Page */
 
 
 
-.modal-btn {
-  font-size: 145%;
-  background: #fe142f;
-  display: flex;
-  margin: auto;
-  padding: 2em;
-  color: #fff;
-  padding: 0.75rem 2.5rem;
-  border-radius: 1rem;
-  cursor: pointer;
-}
-
-.modal-btn:hover {
-  background: #3876ac;
-}
-
-.footer {
-  margin: 20px;
-  padding: 10px;
-  font-family: var(--font-slab);
-}
 
 /* Modal form */
 

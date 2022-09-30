@@ -17,7 +17,7 @@ body {
   font-size: 18px;
   max-width: 1300px;
   margin: 0 auto;
-  padding: 0 $gutter;
+  padding: 0 $gutter-desktop;
 }
 
 p {
@@ -25,7 +25,7 @@ p {
   padding: 0.5vw;
 }
 
-@include tablet-and-mobile {
+@include mobile {
   body {
     padding: 0;
   }
