@@ -11,9 +11,9 @@ let toggleNav = () => {
 hamburgerIcon.addEventListener('click', toggleNav)
 
 // DOM Elements
-const modalbg = document.querySelector('.bground')
+const modalbg = document.querySelector('.formModal__overlay')
 const modalBtn = document.querySelectorAll('.modal-btn')
-const formData = document.querySelectorAll('.formData')
+const form__data = document.querySelectorAll('.form__data')
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener('click', launchModal))

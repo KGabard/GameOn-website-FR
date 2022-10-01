@@ -46,7 +46,7 @@ $hero-section-gutter: 64px;
   &__signupBtn {
     outline: none;
     text-transform: capitalize;
-    font-family: var(--font-default);
+    font-family: $font-default;
     font-size: 1.3rem;
     padding: 16px 24px;
     margin-top: 56px;

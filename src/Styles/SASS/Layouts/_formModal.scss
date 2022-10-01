@@ -1,0 +1,60 @@
+@mixin bar {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+
+.formModal {
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: $modal-duration;
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+
+  &__overlay {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
+  }
+
+  &__content {
+    padding: 15px 8%;
+    margin: 15px auto;
+  }
+
+  &__closeBtn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(0.7);
+
+    &::before {
+      @include bar;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      @include bar;
+      transform: rotate(-45deg);
+    }
+  }
+}
