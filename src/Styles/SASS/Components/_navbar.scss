@@ -53,6 +53,7 @@
 
     &--active {
       display: block;
+      animation: fade-in 400ms both;
     }
 
     &__hamburgerIcon {

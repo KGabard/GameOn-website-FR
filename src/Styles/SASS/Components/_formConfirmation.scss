@@ -13,6 +13,7 @@
 
   &--active {
     display: flex;
+    animation: fade-in 400ms both;
   }
 
   &__text {

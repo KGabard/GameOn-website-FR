@@ -1,3 +1,53 @@
+@-webkit-keyframes modal-open {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modal-open {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-in-border {
+  from {
+    border-color: transparent;
+  }
+  to {
+    border-color: red;
+  }
+}
+@keyframes fade-in-border {
+  from {
+    border-color: transparent;
+  }
+  to {
+    border-color: red;
+  }
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -87,6 +137,8 @@ p {
   }
   .navbar--active {
     display: block;
+    -webkit-animation: fade-in 400ms both;
+            animation: fade-in 400ms both;
   }
   .navbar__hamburgerIcon {
     display: block;
@@ -107,6 +159,8 @@ p {
 }
 .form__textControl--wrong {
   border: 4px solid red;
+  -webkit-animation: fade-in-border 300ms;
+          animation: fade-in-border 300ms;
 }
 .form__errorMessage {
   font-size: 16px;
@@ -115,6 +169,8 @@ p {
 }
 .form__errorMessage--active {
   display: inline-block;
+  -webkit-animation: fade-in 300ms 100ms both;
+          animation: fade-in 300ms 100ms both;
 }
 .form__checkboxLabel, .form__agreementCheckboxLabel {
   position: relative;
@@ -208,25 +264,6 @@ input {
   outline: none;
 }
 
-@-webkit-keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
-  }
-}
 .formConfirmation {
   background-color: #232323;
   position: absolute;
@@ -242,6 +279,8 @@ input {
 }
 .formConfirmation--active {
   display: flex;
+  -webkit-animation: fade-in 400ms both;
+          animation: fade-in 400ms both;
 }
 .formConfirmation__text {
   font-family: "DM Sans", Arial, Helvetica, sans-serif;
@@ -413,8 +452,8 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
-  -webkit-animation-name: modalopen;
-          animation-name: modalopen;
+  -webkit-animation-name: modal-open;
+          animation-name: modal-open;
   -webkit-animation-duration: 0.8s;
           animation-duration: 0.8s;
   background: #232323;

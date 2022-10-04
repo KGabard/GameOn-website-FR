@@ -13,6 +13,7 @@
 
     &--wrong {
       border: 4px solid red;
+      animation: fade-in-border 300ms;
     }
   }
 
@@ -23,6 +24,7 @@
 
     &--active {
       display: inline-block;
+      animation: fade-in 300ms 100ms both;
     }
   }
 
@@ -113,14 +115,4 @@ input {
   padding: 8px;
   border: 0.8px solid #ccc;
   outline: none;
-}
-
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
-  }
 }
