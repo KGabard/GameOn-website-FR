@@ -3,3 +3,16 @@
     @content;
   }
 }
+
+@mixin form-btn {
+  background: $highlight-primary;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  font-family: $font-default;
+}

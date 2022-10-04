@@ -39,10 +39,12 @@
   &__content {
     padding: 15px 8%;
     margin: 15px auto;
+    position: relative;
   }
 
   &__closeBtn {
     position: absolute;
+    z-index: 400;
     right: 15px;
     top: 15px;
     width: 32px;

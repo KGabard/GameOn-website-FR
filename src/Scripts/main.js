@@ -1,84 +1,37 @@
 "use strict";
-// let navbar = document.getElementById('navbar')
-// let hamburgerIcon = document.getElementById('navbar__hamburgerIcon')
-// let toggleNav = () => {
-//   navbar.className === 'navbar'
-//     ? (navbar.className += ` navbar--active`)
-//     : (navbar.className = 'navbar')
-// }
-// hamburgerIcon.addEventListener('click', toggleNav)
-// // DOM Elements
-// const modalbg = document.querySelector('.formModal__overlay')
-// const modalBtn = document.querySelectorAll('.modal-btn')
-// const form__data = document.querySelectorAll('.form__data')
-// // launch modal event
-// modalBtn.forEach((btn) => btn.addEventListener('click', launchModal))
-// // launch modal form
-// function launchModal() {
-//   modalbg.style.display = 'block'
-// }
+//-------------
 // DOM Elements
-// const formModal = document.querySelector('.formModal__overlay')
-// const signupBtn = document.querySelectorAll('heroSection__signupBtn')
-// const toggleModalForm = () => {
-//   const label = 'formModal__overlay'
-//   formModal.className === `${label}`
-//     ? (formModal.className += ` ${label}--active`)
-//     : (formModal.className = `${label}`)
-// }
-// DOM Elements
-const navbar = document.querySelector('.navbar');
-const navbar__hamburgerIcon = document.querySelector('.navbar__hamburgerIcon');
-const formModal = document.querySelector('.formModal__overlay');
-const formModal__closeBtn = document.querySelector('.formModal__closeBtn');
-const signupBtn = document.querySelectorAll('.heroSection__signupBtn');
-const form = document.querySelector('.form');
-// let formInput__firstName = document.querySelector(
-//   "input[name='first']"
-// ) as HTMLInputElement
-// let formInput__lastName = document.querySelector(
-//   "input[name='last']"
-// ) as HTMLInputElement
-// let formInput__email = document.querySelector(
-//   "input[name='email']"
-// ) as HTMLInputElement
-// let formInput__birthdate = document.querySelector(
-//   "input[name='birthdate']"
-// ) as HTMLInputElement
-// let formInput__quantity = document.querySelector(
-//   "input[name='quantity']"
-// ) as HTMLInputElement
-// let formInput__location = document.querySelectorAll(
-//   "input[name='location']"
-// ) as NodeListOf<HTMLInputElement>
-// let formData : {
-//   firstName: string,
-//   lastName: string,
-//   email: string,
-//   birthdate: string,
-//   quantity: number,
-//   location: string,
-// }
-// let formData = {
-//   first: '',
-//   last: '',
-//   email: '',
-//   birthdate: '',
-//   quantity: '',
-//   location: '',
-//   agreement: '',
-//   newsletter: '',
-// }
-const formInputKeys = [
-    'first',
-    'last',
-    'email',
-    'birthdate',
-    'quantity',
-    'location',
-    'agreement',
-    'newsletter',
-];
+//-------------
+const navbarElmt = document.querySelector('.navbar');
+const navbarHamburgerIconElmt = document.querySelector('.navbar__hamburgerIcon');
+const signupBtnElmt = document.querySelectorAll('.heroSection__signupBtn');
+const formModalElmt = document.querySelector('.formModal__overlay');
+const formModalCloseBtnElmt = document.querySelector('.formModal__closeBtn');
+const formElmt = document.querySelector('.form');
+const formConfirmationElmt = document.querySelector('.formConfirmation');
+const formConfirmationCloseBtn = document.querySelector('.formConfirmation__closeBtn');
+//----------
+// Functions
+//----------
+// Function that makes an element inactive by keeping only the base class (the first one) in the class list.
+const closeElmt = (Elmt) => {
+    Elmt.className = `${Elmt.classList[0]}`;
+};
+// Function that makes an element active by adding the base class followed by "--active" in the class list.
+const openElmt = (Elmt) => {
+    Elmt.className += ` ${Elmt.classList[0]}--active`;
+};
+// Function that toggles between active and inactive states.
+const toggleElmt = (Elmt) => {
+    Elmt.className === `${Elmt.classList[0]}` ? openElmt(Elmt) : closeElmt(Elmt);
+};
+// Function that makes an element in error state by adding the base class followed by "--wrong" in the class list.
+const setInputToWrong = (input, option) => {
+    option
+        ? (input.className += ` ${input.classList[0]}--wrong`)
+        : (input.className = `${input.classList[0]}`);
+};
+// Function that tests the value of a form data according to its key. It returns : the validity of the value and the error message if any.
 const isInputValid = (key, value) => {
     let validity;
     let errorMessage;
@@ -110,9 +63,13 @@ const isInputValid = (key, value) => {
             errorMessage = 'Vous devez choisir une option.';
             break;
         case 'agreement':
-            value.toString() === '' ? (validity = false) : (validity = true);
+            value.toString() === 'on' ? (validity = true) : (validity = false);
             errorMessage =
                 'Vous devez vérifier que vous acceptez les termes et conditions.';
+            break;
+        case 'newsletter':
+            validity = true;
+            errorMessage = '';
             break;
         default:
             validity = false;
@@ -121,47 +78,57 @@ const isInputValid = (key, value) => {
     }
     return { validity: validity, errorMessage: errorMessage };
 };
+// Function that gets all the data from the form, checks their validity and submits the form if everything is valid
 const submitForm = (event) => {
     var _a;
+    let formData = new FormData(formElmt);
+    let formValidity = true;
+    const formInputKeys = [
+        'first',
+        'last',
+        'email',
+        'birthdate',
+        'quantity',
+        'location',
+        'agreement',
+        'newsletter',
+    ];
     event.preventDefault();
-    console.log('submitted');
-    console.log(event);
-    let formData = new FormData(form);
     formInputKeys.forEach((key) => {
         !formData.has(key) && formData.append(key, '');
     });
     for (const [key, value] of formData.entries()) {
+        if (key === 'newsletter')
+            continue;
         const currentInputElem = document.querySelector(`input[name=${key}]`);
-        // const currentChildren = currentInputElem.parentNode
-        //   ?.childNodes as NodeListOf<HTMLElement>
-        // let currentErrorElem: HTMLSpanElement
-        // currentChildren.forEach((child) => {
-        //   if (child.classList) {
-        //     console.log(child.classList)
-        //     if (child.classList.contains('form__errorMessage'))
-        //       currentErrorElem = child
-        //   }
-        // })
-        const currentErrorElem = (_a = currentInputElem.parentElement) === null || _a === void 0 ? void 0 : _a.querySelector('span[class="form__errorMessage"]');
+        const currentErrorElem = (_a = currentInputElem.parentElement) === null || _a === void 0 ? void 0 : _a.querySelector('span[class*="form__errorMessage"]');
         setInputToWrong(currentInputElem, false);
+        closeElmt(currentErrorElem);
         currentErrorElem.innerText = '';
         if (!isInputValid(key, value).validity) {
+            formValidity = false;
             setInputToWrong(currentInputElem, true);
+            openElmt(currentErrorElem);
             currentErrorElem.innerText = isInputValid(key, value).errorMessage;
         }
     }
+    formValidity && toggleElmt(formConfirmationElmt);
 };
-form.addEventListener('submit', submitForm);
-const toggleModal = (modal) => {
-    modal.className === `${modal.classList[0]}`
-        ? (modal.className += ` ${modal.classList[0]}--active`)
-        : (modal.className = `${modal.classList[0]}`);
-};
-const setInputToWrong = (input, option) => {
-    option
-        ? (input.className += ` ${input.classList[0]}--wrong`)
-        : (input.className = `${input.classList[0]}`);
-};
-navbar__hamburgerIcon.addEventListener('click', () => toggleModal(navbar));
-signupBtn.forEach((btn) => btn.addEventListener('click', () => toggleModal(formModal)));
-formModal__closeBtn.addEventListener('click', () => toggleModal(formModal));
+//----------------
+// Event Listeners
+//----------------
+// Open the navbar with the hamburger icon.
+navbarHamburgerIconElmt.addEventListener('click', () => toggleElmt(navbarElmt));
+// Open the form modal with the sign up button
+signupBtnElmt.forEach((btn) => btn.addEventListener('click', () => toggleElmt(formModalElmt)));
+// Close the form modal with the close buttons
+formModalCloseBtnElmt.addEventListener('click', () => {
+    toggleElmt(formModalElmt);
+    closeElmt(formConfirmationElmt);
+});
+formConfirmationCloseBtn.addEventListener('click', () => {
+    toggleElmt(formModalElmt);
+    closeElmt(formConfirmationElmt);
+});
+// Adds the submit action to the form
+formElmt.addEventListener('submit', submitForm);

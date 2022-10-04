@@ -17,28 +17,14 @@
   }
 
   &__errorMessage {
-      content: attr(data-error);
-      font-size: 16px;
-      color: red;
+    font-size: 16px;
+    color: red;
+    display: none;
+
+    &--active {
+      display: inline-block;
+    }
   }
-  // &__data[data-error]::after {
-  //   content: attr(data-error);
-  //   font-size: 0.4em;
-  //   color: #e54858;
-  //   display: block;
-  //   margin-top: 7px;
-  //   margin-bottom: 7px;
-  //   text-align: right;
-  //   line-height: 0.3;
-  //   opacity: 0;
-  //   transition: 0.3s;
-  // }
-  // &__data[data-error-visible='true']::after {
-  //   opacity: 1;
-  // }
-  // &__data[data-error-visible='true'] &__textControl {
-  //   border: 2px solid #e54858;
-  // }
 
   &__checkboxLabel,
   &__agreementCheckboxLabel {
@@ -107,16 +93,7 @@
   }
 
   &__submitBtn {
-    background: #fe142f;
-    display: block;
-    margin: 0 auto;
-    border-radius: 7px;
-    font-size: 1rem;
-    padding: 12px 82px;
-    color: #fff;
-    cursor: pointer;
-    border: 0;
-    font-family: $font-default;
+    @include form-btn;
   }
 
   &__textLabel {

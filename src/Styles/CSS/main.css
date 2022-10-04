@@ -109,9 +109,12 @@ p {
   border: 4px solid red;
 }
 .form__errorMessage {
-  content: attr(data-error);
   font-size: 16px;
   color: red;
+  display: none;
+}
+.form__errorMessage--active {
+  display: inline-block;
 }
 .form__checkboxLabel, .form__agreementCheckboxLabel {
   position: relative;
@@ -175,7 +178,7 @@ p {
   top: 19%;
 }
 .form__submitBtn {
-  background: #fe142f;
+  background: #ff0000;
   display: block;
   margin: 0 auto;
   border-radius: 7px;
@@ -224,6 +227,42 @@ input {
     opacity: 1;
   }
 }
+.formConfirmation {
+  background-color: #232323;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 300;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.formConfirmation--active {
+  display: flex;
+}
+.formConfirmation__text {
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  text-align: center;
+}
+.formConfirmation__closeBtn {
+  background: #ff0000;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  position: absolute;
+  bottom: 16px;
+}
+
 .header {
   margin: 24px 0 0;
   padding: 8px 0;
@@ -402,9 +441,11 @@ main {
 .formModal__content {
   padding: 15px 8%;
   margin: 15px auto;
+  position: relative;
 }
 .formModal__closeBtn {
   position: absolute;
+  z-index: 400;
   right: 15px;
   top: 15px;
   width: 32px;
