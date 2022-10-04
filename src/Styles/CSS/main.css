@@ -105,23 +105,13 @@ p {
   font-size: 20px;
   height: 48px;
 }
-.form__data[data-error]::after {
+.form__textControl--wrong {
+  border: 4px solid red;
+}
+.form__errorMessage {
   content: attr(data-error);
-  font-size: 0.4em;
-  color: #e54858;
-  display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  text-align: right;
-  line-height: 0.3;
-  opacity: 0;
-  transition: 0.3s;
-}
-.form__data[data-error-visible=true]::after {
-  opacity: 1;
-}
-.form__data[data-error-visible=true] .form__textControl {
-  border: 2px solid #e54858;
+  font-size: 16px;
+  color: red;
 }
 .form__checkboxLabel, .form__agreementCheckboxLabel {
   position: relative;
@@ -405,6 +395,9 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+}
+.formModal__overlay--active {
+  display: block;
 }
 .formModal__content {
   padding: 15px 8%;
