@@ -42,6 +42,7 @@ const openElmt = (Elmt: HTMLElement) => {
 const toggleElmt = (Elmt: HTMLElement) => {
   Elmt.className === `${Elmt.classList[0]}` ? openElmt(Elmt) : closeElmt(Elmt)
 }
+
 // Function that makes an element in error state by adding the base class followed by "--wrong" in the class list.
 const setInputToWrong = (input: HTMLInputElement, option: boolean) => {
   option
@@ -158,16 +159,16 @@ navbarHamburgerIconElmt.addEventListener('click', () => toggleElmt(navbarElmt))
 
 // Open the form modal with the sign up button
 signupBtnElmt.forEach((btn) =>
-  btn.addEventListener('click', () => toggleElmt(formModalElmt))
+  btn.addEventListener('click', () => openElmt(formModalElmt))
 )
 
 // Close the form modal with the close buttons
 formModalCloseBtnElmt.addEventListener('click', () => {
-  toggleElmt(formModalElmt)
+  closeElmt(formModalElmt)
   closeElmt(formConfirmationElmt)
 })
 formConfirmationCloseBtn.addEventListener('click', () => {
-  toggleElmt(formModalElmt)
+  closeElmt(formModalElmt)
   closeElmt(formConfirmationElmt)
 })
 
