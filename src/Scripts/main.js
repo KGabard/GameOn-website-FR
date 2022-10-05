@@ -97,6 +97,7 @@ const submitForm = (event) => {
     formInputKeys.forEach((key) => {
         !formData.has(key) && formData.append(key, '');
     });
+    console.log(formData);
     for (const [key, value] of formData.entries()) {
         if (key === 'newsletter')
             continue;
@@ -120,14 +121,14 @@ const submitForm = (event) => {
 // Open the navbar with the hamburger icon.
 navbarHamburgerIconElmt.addEventListener('click', () => toggleElmt(navbarElmt));
 // Open the form modal with the sign up button
-signupBtnElmt.forEach((btn) => btn.addEventListener('click', () => toggleElmt(formModalElmt)));
+signupBtnElmt.forEach((btn) => btn.addEventListener('click', () => openElmt(formModalElmt)));
 // Close the form modal with the close buttons
 formModalCloseBtnElmt.addEventListener('click', () => {
-    toggleElmt(formModalElmt);
+    closeElmt(formModalElmt);
     closeElmt(formConfirmationElmt);
 });
 formConfirmationCloseBtn.addEventListener('click', () => {
-    toggleElmt(formModalElmt);
+    closeElmt(formModalElmt);
     closeElmt(formConfirmationElmt);
 });
 // Adds the submit action to the form
