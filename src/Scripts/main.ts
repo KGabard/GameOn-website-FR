@@ -124,8 +124,6 @@ const submitForm = (event: SubmitEvent) => {
     !formData.has(key) && formData.append(key, '')
   })
 
-  console.log(formData)
-
   for (const [key, value] of formData.entries()) {
     if (key === 'newsletter') continue
 
