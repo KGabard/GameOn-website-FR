@@ -125,6 +125,8 @@ const submitForm = (event: SubmitEvent) => {
   })
 
   for (const [key, value] of formData.entries()) {
+    console.log(`${key} : ${value}`);
+    
     if (key === 'newsletter') continue
 
     const currentInputElem = document.querySelector(
@@ -147,7 +149,7 @@ const submitForm = (event: SubmitEvent) => {
     }
   }
 
-  formValidity && toggleElmt(formConfirmationElmt)
+  formValidity && openElmt(formConfirmationElmt)
 }
 
 //----------------

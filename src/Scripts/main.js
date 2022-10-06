@@ -98,6 +98,7 @@ const submitForm = (event) => {
         !formData.has(key) && formData.append(key, '');
     });
     for (const [key, value] of formData.entries()) {
+        console.log(`${key} : ${value}`);
         if (key === 'newsletter')
             continue;
         const currentInputElem = document.querySelector(`input[name=${key}]`);
@@ -112,7 +113,7 @@ const submitForm = (event) => {
             currentErrorElem.innerText = isInputValid(key, value).errorMessage;
         }
     }
-    formValidity && toggleElmt(formConfirmationElmt);
+    formValidity && openElmt(formConfirmationElmt);
 };
 //----------------
 // Event Listeners
