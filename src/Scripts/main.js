@@ -31,6 +31,13 @@ const setInputToWrong = (input, option) => {
         ? (input.className += ` ${input.classList[0]}--wrong`)
         : (input.className = `${input.classList[0]}`);
 };
+// Function that compare an input date with the selected age limit.
+const isDateOver = (inputDate, ageLimit) => {
+    if (inputDate === '')
+        return false;
+    const inputAgeInMilliseconds = Math.abs(Date.now() - new Date(inputDate).getTime());
+    return (Math.floor(inputAgeInMilliseconds / (1000 * 3600 * 24) / 365.25) >= ageLimit);
+};
 // Function that tests the value of a form data according to its key. It returns : the validity of the value and the error message if any.
 const isInputValid = (key, value) => {
     let validity;
@@ -39,7 +46,7 @@ const isInputValid = (key, value) => {
         case 'first':
             validity = /[a-z]{2,}/gi.test(value.toString());
             errorMessage =
-                'Veuillez entrer 2 caractères ou plus pour le champ du nom.';
+                'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
             break;
         case 'last':
             validity = /[a-z]{2,}/gi.test(value.toString());
@@ -51,8 +58,14 @@ const isInputValid = (key, value) => {
             errorMessage = 'Veuillez entrer une adresse mail valide.';
             break;
         case 'birthdate':
-            value.toString() === '' ? (validity = false) : (validity = true);
-            errorMessage = 'Vous devez entrer votre date de naissance.';
+            if (value.toString() === '') {
+                validity = false;
+                errorMessage = 'Vous devez entrer votre date de naissance.';
+            }
+            else {
+                validity = isDateOver(value.toString(), 16);
+                errorMessage = 'Vous devez avoir plus de 16 ans pour vous inscrire.';
+            }
             break;
         case 'quantity':
             validity = /\b([0-9]|[1-9][0-9])\b/g.test(value.toString());
@@ -98,7 +111,6 @@ const submitForm = (event) => {
         !formData.has(key) && formData.append(key, '');
     });
     for (const [key, value] of formData.entries()) {
-        console.log(`${key} : ${value}`);
         if (key === 'newsletter')
             continue;
         const currentInputElem = document.querySelector(`input[name=${key}]`);
@@ -113,7 +125,10 @@ const submitForm = (event) => {
             currentErrorElem.innerText = isInputValid(key, value).errorMessage;
         }
     }
-    formValidity && openElmt(formConfirmationElmt);
+    if (formValidity) {
+        openElmt(formConfirmationElmt);
+        formElmt.reset();
+    }
 };
 //----------------
 // Event Listeners
