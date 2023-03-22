@@ -18,7 +18,7 @@ Outils :
 - SASS
 
 ## Repo d'origine
-Le repo GitHub d'origine propose une base de travail : [ici](https://github.com/OpenClassrooms-Student-Center/GameOn-website-FR/). Il est nécessaire de s'approprier cette base avant de travailler sur le formulaire. L'objectif est ensuite de rendre fonctionnel le formualaire.
+Le repo GitHub d'origine propose une base de travail : [ici](https://github.com/OpenClassrooms-Student-Center/GameOn-website-FR/). Il est nécessaire de s'approprier cette base avant de travailler sur le formulaire. L'objectif est ensuite de rendre fonctionnel le formulaire.
 
 ## Démo du site
 La démo du site est disponible : [ici](https://kgabard.github.io/OC_P4_GameOn/)
